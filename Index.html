@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>शर्मा किराना स्टोर</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Mukta:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FBF6E6; --ink:#1d1b16; --muted:#6b665a; --card:#FFFDF5; --line:#e4dbbd;
+  --sign:#1B3A8C; --sign-ink:#FFF7D6; --yellow:#F4B400; --red:#C8321E; --green:#1E7A46;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){--bg:#14161c;--ink:#f1ecdc;--muted:#a49f90;--card:#1c1f27;--line:#2e3240;--green:#4cc386;color-scheme:dark}
+}
+:root[data-theme="dark"]{--bg:#14161c;--ink:#f1ecdc;--muted:#a49f90;--card:#1c1f27;--line:#2e3240;--green:#4cc386;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.55 "Mukta",system-ui,sans-serif;padding-bottom:96px}
+h1,h2,h3{font-family:"Baloo 2","Mukta",system-ui,sans-serif;margin:0;line-height:1.15}
+.wrap{max-width:760px;margin:0 auto;padding:0 16px}
+.sign{background:var(--sign);color:var(--sign-ink);padding:28px 16px 34px;text-align:center;border-bottom:8px solid var(--yellow);position:relative}
+.sign .board{max-width:640px;margin:0 auto;border:3px solid var(--yellow);border-radius:6px;padding:22px 14px 18px;outline:2px solid var(--sign-ink);outline-offset:-10px}
+.sign h1{font-size:clamp(2.2rem,9vw,3.6rem);font-weight:800;letter-spacing:.01em}
+.sign .en{font-family:"Baloo 2",sans-serif;font-weight:600;font-size:1.15rem;color:var(--yellow);margin-top:4px}
+.sign .tag{margin:10px 0 0;font-size:1rem;opacity:.92}
+.sign .cta{display:inline-block;margin-top:20px;background:var(--yellow);color:#231c00;font:600 1.05rem "Baloo 2",sans-serif;padding:10px 22px;border-radius:999px;text-decoration:none}
+.sign .cta:focus-visible,button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:18px 0}
+.fact{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-size:.95rem}
+.fact b{display:block;font-family:"Baloo 2",sans-serif;font-size:1.02rem}
+.fact span{color:var(--muted)}
+.rate-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin:26px 0 10px}
+.rate-head h2{font-size:1.7rem}
+.rate-head small{color:var(--muted)}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding:4px 0 10px;scrollbar-width:thin}
+.tabs button{flex:none;font:600 .98rem "Mukta",sans-serif;padding:7px 14px;border-radius:999px;border:1.5px solid var(--sign);background:transparent;color:var(--ink);cursor:pointer}
+.tabs button[aria-pressed="true"]{background:var(--sign);color:var(--sign-ink)}
+.search{width:100%;font:inherit;padding:10px 12px;border:1.5px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);margin-bottom:10px}
+.ledger{background:var(--card);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.row{display:grid;grid-template-columns:1fr auto;gap:4px 12px;align-items:center;padding:11px 14px;border-bottom:1px dashed var(--line)}
+.row:last-child{border-bottom:0}
+.nm{font-weight:600}
+.nm i{font-style:normal;color:var(--muted);font-weight:400;font-size:.92rem;margin-left:6px}
+.pr{color:var(--muted);font-size:.95rem}
+.pr b{color:var(--ink);font-family:"Baloo 2",sans-serif;font-size:1.08rem}
+.act{grid-row:1 / span 2;grid-column:2;display:flex;align-items:center}
+.add{font:600 .95rem "Baloo 2",sans-serif;background:var(--yellow);color:#231c00;border:0;border-radius:6px;padding:7px 18px;cursor:pointer;min-height:40px}
+.qty{display:flex;align-items:center;background:var(--green);color:#fff;border-radius:6px}
+.qty button{background:none;border:0;color:inherit;font:600 1.3rem "Baloo 2",sans-serif;width:40px;height:40px;cursor:pointer}
+.qty span{min-width:22px;text-align:center;font-weight:600}
+.empty{padding:22px;text-align:center;color:var(--muted)}
+.note{margin:22px 0 0;color:var(--muted);font-size:.93rem}
+footer{margin-top:34px;padding:22px 16px;background:var(--sign);color:var(--sign-ink);text-align:center;font-size:.95rem}
+footer a{color:var(--yellow)}
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--ink);color:var(--bg);padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));display:none}
+.bar.on{display:block}
+.bar .in{max-width:760px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.bar .t{line-height:1.2}
+.bar .t b{font:800 1.2rem "Baloo 2",sans-serif}
+.bar .t small{display:block;opacity:.75;font-size:.82rem}
+.bar a{background:#25D366;color:#06260f;font:600 1.02rem "Baloo 2",sans-serif;padding:10px 18px;border-radius:999px;text-decoration:none;white-space:nowrap}
+.bar a.disabled{opacity:.5;pointer-events:none}
+@media (prefers-reduced-motion:no-preference){.sign .board{animation:rise .6s ease-out both}@keyframes rise{from{opacity:0;transform:translateY(10px)}}}
+</style>
+</head>
+<body>
+
+<header class="sign">
+  <div class="board">
+    <h1 id="shopHi">शर्मा किराना स्टोर</h1>
+    <div class="en" id="shopEn">Sharma Kirana Store</div>
+    <p class="tag">रोज़ का राशन, सही दाम पर। फ़ोन पर चुनें, WhatsApp पर ऑर्डर करें।</p>
+    <a class="cta" href="#rates">रेट लिस्ट देखें</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="facts" aria-label="दुकान की जानकारी">
+    <div class="fact"><b>समय</b><span>सुबह 7:00 – रात 9:30<br>(रविवार खुला)</span></div>
+    <div class="fact"><b>होम डिलीवरी</b><span>₹299 से ऊपर के ऑर्डर पर फ्री, पास की गलियों में</span></div>
+    <div class="fact"><b>पता</b><span>मेन मार्केट, नियर शिव मंदिर<br>(अपना पता यहाँ लिखें)</span></div>
+    <div class="fact"><b>फ़ोन</b><span><a id="callLink" href="tel:+919999999999">99999 99999</a></span></div>
+  </section>
+
+  <section id="rates" aria-labelledby="rt">
+    <div class="rate-head"><h2 id="rt">आज की रेट लिस्ट</h2><small>दाम ₹ में</small></div>
+    <div class="tabs" id="tabs" role="group" aria-label="श्रेणी चुनें"></div>
+    <input class="search" id="q" type="search" placeholder="सामान खोजें, जैसे चावल, tea, तेल" aria-label="सामान खोजें">
+    <div class="ledger" id="list" aria-live="polite"></div>
+    <p class="note">दाम बाज़ार भाव के हिसाब से बदल सकते हैं। फ़ाइनल बिल दुकान पर मिलेगा।</p>
+  </section>
+</main>
+
+<footer>
+  शर्मा किराना स्टोर · आपके मोहल्ले की अपनी दुकान<br>
+  ऑर्डर के लिए <a id="waLink" href="https://wa.me/919999999999">WhatsApp करें</a>
+</footer>
+
+<div class="bar" id="bar">
+  <div class="in">
+    <div class="t"><b id="tot">₹0</b><small id="cnt">0 सामान</small></div>
+    <a id="send" href="#" class="disabled" target="_blank" rel="noopener">WhatsApp पर ऑर्डर भेजें</a>
+  </div>
+</div>
+
+<script>
+const SHOP = { hi:"शर्मा किराना स्टोर", en:"Sharma Kirana Store", wa:"919999999999" };
+
+const CATS = ["सब","आटा-दाल-चावल","तेल-मसाले","चाय-चीनी","बिस्कुट-नमकीन","साबुन-सफ़ाई"];
+const P = [
+ ["Aashirvaad Atta","आटा","5 kg",245,1],["Basmati Rice","बासमती चावल","1 kg",98,1],
+ ["Arhar Dal","अरहर दाल","1 kg",160,1],["Moong Dal","मूंग दाल","1 kg",125,1],
+ ["Chana Dal","चना दाल","1 kg",92,1],["Besan","बेसन","500 g",58,1],
+ ["Mustard Oil","सरसों तेल","1 L",155,2],["Refined Oil","रिफाइंड तेल","1 L",138,2],
+ ["Turmeric Powder","हल्दी","100 g",32,2],["Red Chilli Powder","लाल मिर्च","100 g",45,2],
+ ["Garam Masala","गरम मसाला","50 g",48,2],["Iodised Salt","नमक","1 kg",28,2],
+ ["Sugar","चीनी","1 kg",46,3],["Tea (Tata Premium)","चाय पत्ती","250 g",120,3],
+ ["Jaggery","गुड़","500 g",42,3],["Coffee","कॉफ़ी","50 g",95,3],
+ ["Parle-G","पारले-जी","pack",10,4],["Good Day Biscuit","गुड डे","pack",30,4],
+ ["Namkeen Mixture","नमकीन","200 g",55,4],["Maggi Noodles","मैगी","4 pack",56,4],
+ ["Washing Soap","कपड़े धोने का साबुन","1 pc",20,5],["Detergent Powder","सर्फ़ पाउडर","1 kg",105,5],
+ ["Bath Soap","नहाने का साबुन","1 pc",38,5],["Toothpaste","टूथपेस्ट","100 g",62,5]
+];
+
+const cart = {}; let cat = 0, term = "";
+const $ = id => document.getElementById(id);
+const esc = s => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+document.title = SHOP.hi; $("shopHi").textContent = SHOP.hi; $("shopEn").textContent = SHOP.en;
+$("waLink").href = "https://wa.me/" + SHOP.wa; $("callLink").href = "tel:+" + SHOP.wa;
+
+function tabs(){
+  $("tabs").innerHTML = CATS.map((c,i)=>`<button type="button" data-i="${i}" aria-pressed="${i===cat}">${c}</button>`).join("");
+}
+function list(){
+  const t = term.trim().toLowerCase();
+  const items = P.map((p,i)=>({p,i})).filter(({p})=>(cat===0||p[4]===cat) && (!t || (p[0]+p[1]).toLowerCase().includes(t)));
+  $("list").innerHTML = items.length ? items.map(({p,i})=>{
+    const n = cart[i]||0;
+    const act = n ? `<div class="qty"><button type="button" data-d="-1" data-i="${i}" aria-label="कम करें">−</button><span>${n}</span><button type="button" data-d="1" data-i="${i}" aria-label="बढ़ाएँ">+</button></div>`
+                  : `<button type="button" class="add" data-d="1" data-i="${i}">जोड़ें</button>`;
+    return `<div class="row"><div class="nm">${esc(p[0])}<i>${esc(p[1])}</i></div><div class="act">${act}</div><div class="pr"><b>₹${p[3]}</b> / ${esc(p[2])}</div></div>`;
+  }).join("") : `<div class="empty">यह सामान नहीं मिला। WhatsApp पर पूछ लें, हो सकता है दुकान पर हो।</div>`;
+}
+function bar(){
+  let n=0,sum=0,lines=[];
+  for(const k in cart){const q=cart[k],p=P[k];n+=q;sum+=q*p[3];lines.push(`• ${p[0]} (${p[2]}) × ${q} = ₹${q*p[3]}`);}
+  $("bar").classList.toggle("on", n>0);
+  $("tot").textContent = "₹"+sum; $("cnt").textContent = n+" सामान";
+  const msg = `नमस्ते ${SHOP.hi},\nमुझे ये सामान चाहिए:\n${lines.join("\n")}\n\nकुल लगभग: ₹${sum}\nनाम और पता: `;
+  const a = $("send"); a.href = "https://wa.me/"+SHOP.wa+"?text="+encodeURIComponent(msg);
+  a.classList.toggle("disabled", n===0);
+}
+$("tabs").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;cat=+b.dataset.i;tabs();list();});
+$("list").addEventListener("click",e=>{
+  const b=e.target.closest("button");if(!b)return;
+  const i=b.dataset.i,d=+b.dataset.d;cart[i]=Math.max(0,(cart[i]||0)+d);if(!cart[i])delete cart[i];
+  list();bar();
+});
+$("q").addEventListener("input",e=>{term=e.target.value;list();});
+tabs();list();bar();
+</script>
+</body>
+</html>
